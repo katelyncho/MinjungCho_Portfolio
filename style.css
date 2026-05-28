@@ -1,0 +1,26 @@
+header {
+  padding: 20px;
+}
+
+body {
+  /* font-family: 'Arial', sans-serif; */
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #302f3b;
+}
+
+footer {
+  padding: 20px;
+  text-align: left;
+}
+
+.contactLogo {
+  width: 30px;
+  height: 30px;
+}
+.contactLogo:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
