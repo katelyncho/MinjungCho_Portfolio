@@ -132,3 +132,34 @@ footer {
     column-count: 1;
   }
 }
+
+/* asciiart */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  background-color: #0f0f0f;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  visibility: hidden;
+}
+/* asciiart */
