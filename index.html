@@ -8,6 +8,29 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="waterLayer" aria-hidden="true">
+      <svg id="waterSvg" viewBox="0 0 1000 420" preserveAspectRatio="none">
+        <defs>
+          <clipPath id="waterClip" clipPathUnits="userSpaceOnUse">
+            <path id="waterClipPath" d="" />
+          </clipPath>
+        </defs>
+
+        <image
+          id="waterGif"
+          href="./img/exampleGIF.gif"
+          x="0"
+          y="0"
+          width="1000"
+          height="420"
+          preserveAspectRatio="xMidYMid slice"
+          clip-path="url(#waterClip)"
+        />
+
+        <path id="waterTintPath" d="" />
+      </svg>
+    </div>
+
     <header>
       WORKS | ABOUT
       <a href="../index.html"
@@ -15,7 +38,7 @@
       /></a>
       EXPERIENCE | RESUME
     </header>
-    <div>
+    <div class="titleBlock">
       <h1>NAMEANDTITLE<br /><span class="font2">aaaaaaa</span></h1>
     </div>
 
