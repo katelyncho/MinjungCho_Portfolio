@@ -1,3 +1,152 @@
+// ------- typewriter effect -------
+const nameTitleText = document.querySelector(".nameTitle h2");
+
+const typewriterParts = [
+  { text: 'print ("Hello, World!' },
+  { br: true },
+  { text: "I'm " },
+  { text: "Minjung Cho", className: "font2" },
+  { br: true },
+  { text: "Technical Artist," },
+  { br: true },
+  { text: 'creating anything I like.")' },
+];
+
+let typePartIndex = 0;
+let typeCharIndex = 0;
+let currentTarget = null;
+
+const typeSpeed = 30;
+
+if (nameTitleText) {
+  nameTitleText.innerHTML = "";
+
+  const cursor = document.createElement("span");
+  cursor.className = "typeCursor";
+  cursor.textContent = "|";
+  nameTitleText.appendChild(cursor);
+
+  function typeNameTitle() {
+    const currentPart = typewriterParts[typePartIndex];
+
+    if (!currentPart) return;
+
+    if (currentPart.br) {
+      nameTitleText.insertBefore(document.createElement("br"), cursor);
+      typePartIndex++;
+      typeCharIndex = 0;
+      currentTarget = null;
+      setTimeout(typeNameTitle, typeSpeed);
+      return;
+    }
+
+    if (!currentTarget) {
+      currentTarget = currentPart.className
+        ? document.createElement("span")
+        : document.createTextNode("");
+
+      if (currentPart.className) {
+        currentTarget.className = currentPart.className;
+      }
+
+      nameTitleText.insertBefore(currentTarget, cursor);
+    }
+
+    if (typeCharIndex < currentPart.text.length) {
+      if (currentTarget.nodeType === Node.TEXT_NODE) {
+        currentTarget.textContent += currentPart.text[typeCharIndex];
+      } else {
+        currentTarget.textContent += currentPart.text[typeCharIndex];
+      }
+
+      typeCharIndex++;
+      setTimeout(typeNameTitle, typeSpeed);
+    } else {
+      typePartIndex++;
+      typeCharIndex = 0;
+      currentTarget = null;
+      setTimeout(typeNameTitle, typeSpeed);
+    }
+  }
+
+  typeNameTitle();
+}
+// ------- typewriter effect -------
+
+// ------- water droop -------
+const waterClipPath = document.getElementById("waterClipPath");
+const waterTintPath = document.getElementById("waterTintPath");
+const waterGif = document.getElementById("waterGif");
+
+let waterStartTime = null;
+
+function buildWaterPath(progress) {
+  const w = 1000;
+  const h = 420;
+
+  const topY = -80;
+  // change last number to change total drooping distance
+  const baseY = -40 + progress * h * 0.4;
+
+  const leftX = 0;
+  const rightX = w;
+
+  const droop1X = w * 0.18;
+  const droop2X = w * 0.5;
+  const droop3X = w * 0.8;
+
+  const droop1Y = baseY + 60 + Math.sin(progress * Math.PI * 2) * 18;
+  const droop2Y = baseY + 130 + Math.sin(progress * Math.PI * 2 + 1.5) * 30;
+  const droop3Y = baseY + 80 + Math.sin(progress * Math.PI * 2 + 3) * 22;
+
+  return `
+    M ${leftX} ${topY}
+    L ${rightX} ${topY}
+    L ${rightX} ${baseY}
+
+    C ${w * 0.9} ${baseY + 30}, ${w * 0.86} ${droop3Y}, ${droop3X} ${droop3Y}
+    C ${w * 0.7} ${droop3Y}, ${w * 0.66} ${baseY + 35}, ${w * 0.6} ${baseY + 45}
+
+    C ${w * 0.56} ${baseY + 55}, ${w * 0.58} ${droop2Y}, ${droop2X} ${droop2Y}
+    C ${w * 0.42} ${droop2Y}, ${w * 0.44} ${baseY + 55}, ${w * 0.36} ${baseY + 45}
+
+    C ${w * 0.3} ${baseY + 35}, ${w * 0.32} ${droop1Y}, ${droop1X} ${droop1Y}
+    C ${w * 0.12} ${droop1Y}, ${w * 0.1} ${baseY + 30}, ${leftX} ${baseY}
+
+    Z
+  `;
+}
+
+function animateWater(timestamp) {
+  if (!waterClipPath) return;
+
+  if (!waterStartTime) {
+    waterStartTime = timestamp;
+  }
+
+  const elapsed = timestamp - waterStartTime;
+  // speed of water drooping
+  const duration = 8000;
+
+  const rawProgress = Math.min(elapsed / duration, 1);
+  const progress = 1 - Math.pow(1 - rawProgress, 3);
+
+  const path = buildWaterPath(progress);
+
+  waterClipPath.setAttribute("d", path);
+
+  if (waterTintPath) {
+    waterTintPath.setAttribute("d", path);
+  }
+
+  if (rawProgress < 1) {
+    requestAnimationFrame(animateWater);
+  }
+}
+
+requestAnimationFrame(animateWater);
+// ------- water droop -------
+
 // ------- ascii art -------
 let CELL_SIZE = 8;
 let CELL_GAP = 2;
@@ -187,77 +336,3 @@ window.addEventListener("mouseleave", () => {
 
 animationLoop();
 // ------- ascii art -------
-
-// ------- water droop gif reveal -------
-const waterClipPath = document.getElementById("waterClipPath");
-const waterTintPath = document.getElementById("waterTintPath");
-const waterGif = document.getElementById("waterGif");
-
-let waterStartTime = null;
-
-function buildWaterPath(progress) {
-  const w = 1000;
-  const h = 420;
-
-  const topY = -80;
-  // change last number to change total drooping distance
-  const baseY = -40 + progress * h * 0.4;
-
-  const leftX = 0;
-  const rightX = w;
-
-  const droop1X = w * 0.18;
-  const droop2X = w * 0.5;
-  const droop3X = w * 0.8;
-
-  const droop1Y = baseY + 60 + Math.sin(progress * Math.PI * 2) * 18;
-  const droop2Y = baseY + 130 + Math.sin(progress * Math.PI * 2 + 1.5) * 30;
-  const droop3Y = baseY + 80 + Math.sin(progress * Math.PI * 2 + 3) * 22;
-
-  return `
-    M ${leftX} ${topY}
-    L ${rightX} ${topY}
-    L ${rightX} ${baseY}
-
-    C ${w * 0.9} ${baseY + 30}, ${w * 0.86} ${droop3Y}, ${droop3X} ${droop3Y}
-    C ${w * 0.7} ${droop3Y}, ${w * 0.66} ${baseY + 35}, ${w * 0.6} ${baseY + 45}
-
-    C ${w * 0.56} ${baseY + 55}, ${w * 0.58} ${droop2Y}, ${droop2X} ${droop2Y}
-    C ${w * 0.42} ${droop2Y}, ${w * 0.44} ${baseY + 55}, ${w * 0.36} ${baseY + 45}
-
-    C ${w * 0.3} ${baseY + 35}, ${w * 0.32} ${droop1Y}, ${droop1X} ${droop1Y}
-    C ${w * 0.12} ${droop1Y}, ${w * 0.1} ${baseY + 30}, ${leftX} ${baseY}
-
-    Z
-  `;
-}
-
-function animateWater(timestamp) {
-  if (!waterClipPath) return;
-
-  if (!waterStartTime) {
-    waterStartTime = timestamp;
-  }
-
-  const elapsed = timestamp - waterStartTime;
-  // speed of water drooping
-  const duration = 8000;
-
-  const rawProgress = Math.min(elapsed / duration, 1);
-  const progress = 1 - Math.pow(1 - rawProgress, 3);
-
-  const path = buildWaterPath(progress);
-
-  waterClipPath.setAttribute("d", path);
-
-  if (waterTintPath) {
-    waterTintPath.setAttribute("d", path);
-  }
-
-  if (rawProgress < 1) {
-    requestAnimationFrame(animateWater);
-  }
-}
-
-requestAnimationFrame(animateWater);
-// ------- water droop gif reveal -------

@@ -32,6 +32,44 @@ footer {
   text-align: left;
 }
 
+.nameTitle {
+  z-index: 2;
+  min-height: 32svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nameTitle h2 {
+  font-family: "Consolas", monospace;
+  margin: 0;
+}
+
+.font2 {
+  font-family: "Menlo", monospace;
+  font-size: 2rem;
+  color: #ffc7c7;
+}
+
+.typeCursor {
+  font-size: 2rem;
+  display: inline-block;
+  margin-left: 2px;
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
 .contactLogo {
   width: 30px;
   height: 30px;
@@ -182,8 +220,12 @@ asciiart original */
 
 /* asciiart */
 .hero {
-  position: fixed;
+  position: absolute;
   inset: 0;
+  /* top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 50%; */
   width: 100%;
   height: 100svh;
   background-color: #0f0f0f;
@@ -216,7 +258,6 @@ canvas {
 /* asciiart */
 
 /* water droop */
-/* water droop reveal layer */
 .waterLayer {
   position: absolute;
   top: 0;
@@ -238,15 +279,4 @@ canvas {
   fill: rgba(255, 255, 255, 0.08);
   mix-blend-mode: screen;
 }
-
-.titleBlock {
-  z-index: 2;
-  min-height: 32svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.titleBlock h1 {
-  margin: 0;
-}
+/* water droop */
