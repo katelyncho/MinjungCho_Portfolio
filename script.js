@@ -16,7 +16,7 @@ let typePartIndex = 0;
 let typeCharIndex = 0;
 let currentTarget = null;
 
-const typeSpeed = 30;
+const typeSpeed = 55;
 
 if (nameTitleText) {
   nameTitleText.innerHTML = "";
