@@ -86,7 +86,7 @@ function buildWaterPath(progress) {
 
   const topY = -80;
   // change last number to change total drooping distance
-  const baseY = -40 + progress * h * 0.4;
+  const baseY = -40 + progress * h * 0.6;
 
   const leftX = 0;
   const rightX = w;
