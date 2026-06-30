@@ -1,5 +1,5 @@
 html {
-  font-family: "Consolas";
+  font-family: "Consolas", monospace;
   color: #ffffff;
 }
 
@@ -55,16 +55,16 @@ footer {
 }
 
 .nameTitle h2 {
-  font-family: "Consolas";
+  font-family: "Consolas", monospace;
   font-size: 2.5rem;
   margin: 0;
-  color: #e9e9e9
+  color: #e9e9e9;
 }
 
 .font2 {
   /* font-family: "Menlo", monospace; */
   /* font-family: "Wendy One"; */
-  font-family: "Zilla Slab Highlight";
+  font-family: "Zilla Slab Highlight", monospace;
   font-size: 3rem;
   color: #fff7bb;
 }
@@ -277,7 +277,7 @@ canvas {
 /* asciiart */
 
 /* water droop */
-.waterLayer {
+#waterLayer {
   position: absolute;
   top: 0;
   left: 0;
@@ -288,7 +288,7 @@ canvas {
   overflow: visible;
 }
 
-.waterLayer svg {
+#waterLayer svg {
   width: 100%;
   height: 100%;
   display: block;
