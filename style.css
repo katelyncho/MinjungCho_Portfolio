@@ -93,11 +93,11 @@ footer {
   height: 30px;
 }
 
-/* .contactLogo:hover {
+.contactLogo:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: transform 0.2s ease;
-} */
+}
 
 .mainLogo {
   width: 30px;

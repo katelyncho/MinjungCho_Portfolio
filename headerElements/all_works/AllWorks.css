@@ -1,0 +1,184 @@
+html {
+  font-family: "Consolas", monospace;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+a:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  min-height: 100vh;
+  /* position: relative;
+  isolation: isolate; */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  /* overflow-y: scroll; 이거 나중에 테스트 해봐*/
+  text-align: center;
+  background-color: #302f3b;
+}
+
+header {
+  font-size: 1.5rem;
+  z-index: 2;
+  display: flex;
+  /* padding: 0 30px 0 30px; */
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  z-index: 2;
+  padding: 20px;
+  text-align: left;
+}
+
+.contactLogo {
+  width: 30px;
+  height: 30px;
+}
+
+.contactLogo:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.mainLogo {
+  width: 30px;
+  height: 30px;
+  padding: 0 10px 0 10px;
+}
+.mainLogo:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+.workCategoryContainer {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.featuredWorksGallery {
+  z-index: 2;
+  column-count: 4;
+  column-gap: 1rem;
+  padding: 15px;
+  width: 90%;
+  margin: auto;
+}
+
+.featuredWorks {
+  position: relative;
+  display: block;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+.featuredWorkImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.featuredWorkText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.featuredWorks:hover {
+  cursor: pointer;
+}
+
+.featuredWorks:hover .featuredWorkImg {
+  transform: scale(1.05);
+  filter: brightness(45%);
+}
+
+.featuredWorks:hover .featuredWorkText {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .featuredWorksGallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .featuredWorksGallery {
+    column-count: 1;
+  }
+}
+
+/* asciiart */
+.hero {
+  position: absolute;
+  inset: 0;
+  /* top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 50%; */
+  width: 100%;
+  height: 100svh;
+  background-color: #0f0f0f;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  visibility: hidden;
+}
+/* asciiart */
