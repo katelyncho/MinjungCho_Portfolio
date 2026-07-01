@@ -75,18 +75,42 @@ if (nameTitleText) {
 
 // ------- water droop -------
 const waterClipPath = document.getElementById("waterClipPath");
-const waterTintPath = document.getElementById("waterTintPath");
 const waterGif = document.getElementById("waterGif");
 
+const SHIFT_MAX_WIDTH = 1600;
+const SHIFT_MIN_WIDTH = 480;
+
+//////////!!!!!NEED TO DECIDE ONE LATER!!!!!!///////////////////
+// const SHIFT_UP_PX = -200;
+const SHIFT_UP_PX = -900;
+//////////!!!!!NEED TO DECIDE ONE LATER!!!!!!///////////////////
+
+function updateGifShift() {
+  if (!waterGif) return;
+
+  const width = window.innerWidth;
+  const clamped = Math.min(Math.max(width, SHIFT_MIN_WIDTH), SHIFT_MAX_WIDTH);
+  const t = (clamped - SHIFT_MIN_WIDTH) / (SHIFT_MAX_WIDTH - SHIFT_MIN_WIDTH);
+
+  const offsetY = SHIFT_UP_PX * t;
+  waterGif.style.transform = `translateY(${offsetY}px)`;
+}
+
+window.addEventListener("resize", updateGifShift);
+updateGifShift();
+
 let waterStartTime = null;
+let currentProgress = 0;
+
+const TOP_Y = -80;
+const DROOP_TOTAL_DEPTH = 600;
+const DROOP_AMP = 130;
 
 function buildWaterPath(progress) {
-  const w = 1000;
-  const h = 420;
+  const w = waterGif.clientWidth; 
 
-  const topY = -80;
-  // change last number to change total drooping distance
-  const baseY = -40 + progress * h * 0.6;
+  const topY = TOP_Y;
+  const baseY = -40 + progress * DROOP_TOTAL_DEPTH;
 
   const leftX = 0;
   const rightX = w;
@@ -96,7 +120,7 @@ function buildWaterPath(progress) {
   const droop3X = w * 0.8;
 
   const droop1Y = baseY + 60 + Math.sin(progress * Math.PI * 2) * 18;
-  const droop2Y = baseY + 130 + Math.sin(progress * Math.PI * 2 + 1.5) * 30;
+  const droop2Y = baseY + DROOP_AMP + Math.sin(progress * Math.PI * 2 + 1.5) * 30;
   const droop3Y = baseY + 80 + Math.sin(progress * Math.PI * 2 + 3) * 22;
 
   return `
@@ -117,6 +141,11 @@ function buildWaterPath(progress) {
   `;
 }
 
+function updateWaterPath() {
+  if (!waterClipPath) return;
+  waterClipPath.setAttribute("d", buildWaterPath(currentProgress));
+}
+
 function animateWater(timestamp) {
   if (!waterClipPath) return;
 
@@ -125,25 +154,19 @@ function animateWater(timestamp) {
   }
 
   const elapsed = timestamp - waterStartTime;
-  // speed of water drooping
   const duration = 8000;
 
   const rawProgress = Math.min(elapsed / duration, 1);
-  const progress = 1 - Math.pow(1 - rawProgress, 3);
+  currentProgress = 1 - Math.pow(1 - rawProgress, 3);
 
-  const path = buildWaterPath(progress);
-
-  waterClipPath.setAttribute("d", path);
-
-  if (waterTintPath) {
-    waterTintPath.setAttribute("d", path);
-  }
+  updateWaterPath();
 
   if (rawProgress < 1) {
     requestAnimationFrame(animateWater);
   }
 }
 
+window.addEventListener("resize", updateWaterPath);
 requestAnimationFrame(animateWater);
 // ------- water droop -------
 

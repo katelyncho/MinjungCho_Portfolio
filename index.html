@@ -10,28 +10,18 @@
       @import url("https://fonts.googleapis.com/css2?family=Wendy+One&family=Zilla+Slab+Highlight:wght@400;700&display=swap");
     </style>
   </head>
-  <!-- aaa -->
+
   <body>
     <div id="waterLayer" aria-hidden="true">
-      <svg id="waterSvg" viewBox="0 0 1000 420" preserveAspectRatio="none">
+      <div id="waterClipContainer">
+        <img id="waterGif" src="./img/octopus_final.gif" alt="" />
+      </div>
+      <svg id="waterSvg" width="0" height="0">
         <defs>
           <clipPath id="waterClip" clipPathUnits="userSpaceOnUse">
             <path id="waterClipPath" d="" />
           </clipPath>
         </defs>
-
-        <image
-          id="waterGif"
-          href="./img/octopus_final.gif"
-          x="0"
-          y="50"
-          width="1000"
-          height="420"
-          preserveAspectRatio="xMidYMid slice"
-          clip-path="url(#waterClip)"
-        />
-
-        <path id="waterTintPath" d="" />
       </svg>
     </div>
 

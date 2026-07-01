@@ -282,18 +282,42 @@ canvas {
   top: 0;
   left: 0;
   width: 100%;
-  height: 105svh;
   z-index: 1;
   pointer-events: none;
   overflow: visible;
 }
 
-#waterLayer svg {
+#waterClipContainer {
   width: 100%;
-  height: 100%;
-  display: block;
+  clip-path: url(#waterClip);
+  -webkit-clip-path: url(#waterClip);
+  overflow: visible;
 }
 
+#waterGif {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* #waterLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible;
+}
+
+#waterGif {
+  display: block;
+  width: 100%;
+  height: auto;
+  clip-path: url(#waterClip);
+  -webkit-clip-path: url(#waterClip);
+} */
+
+/* 나중에 위에 그라데이션 넣기 */
 #waterTintPath {
   fill: rgba(255, 255, 255, 0.08);
   mix-blend-mode: screen;
