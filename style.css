@@ -137,6 +137,32 @@ footer {
   padding: 20px;
 }
 
+.workCategory {
+  width: 10rem;
+  height: 10rem;
+  transition: transform 0.2s ease;
+}
+
+.workCategoryContainer a:nth-child(1):active img {
+  content: url("img/category2.png");
+}
+
+.workCategoryContainer a:nth-child(2):active img {
+  content: url("img/logo/gamePrototype2.png");
+}
+
+.workCategoryContainer a:nth-child(3):active img {
+  content: url("img/logo/interactiveArt2.png");
+}
+
+.workCategoryContainer a:nth-child(4):active img {
+  content: url("img/logo/2dDesign2.png");
+}
+
+.workCategoryContainer a:nth-child(5):active img {
+  content: url("img/logo/experience2.png");
+}
+
 .featuredWorksGallery {
   z-index: 2;
   column-count: 4;
