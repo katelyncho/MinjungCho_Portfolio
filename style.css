@@ -133,13 +133,13 @@ footer {
   z-index: 2;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 50px;
   padding: 20px;
 }
 
 .workCategory {
-  width: 10rem;
-  height: 10rem;
+  width: 12rem;
+  height: 12rem;
   transition: transform 0.2s ease;
 }
 
