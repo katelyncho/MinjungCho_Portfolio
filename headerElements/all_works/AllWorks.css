@@ -16,7 +16,10 @@
 }
 
 .Slides1,
-.Slides2 {
+.Slides2,
+.Slides3,
+.Slides4,
+.Slides5 {
   position: relative;
   flex: 0 0 calc((100% - 24px) / 3);
   max-width: calc((100% - 24px) / 3);
@@ -28,14 +31,20 @@
 }
 
 .Slides1 img,
-.Slides2 img {
+.Slides2 img,
+.Slides3 img,
+.Slides4 img,
+.Slides5 img {
   display: block;
   width: 100%;
   height: auto;
 }
 
 .Slides1 img:hover,
-.Slides2 img:hover {
+.Slides2 img:hover,
+.Slides3 img:hover,
+.Slides4 img:hover,
+.Slides5 img:hover {
   cursor: pointer;
   transition:
     transform 0.3s ease,
@@ -62,7 +71,10 @@
 }
 
 .Slides1:hover .slideshowText,
-.Slides2:hover .slideshowText {
+.Slides2:hover .slideshowText,
+.Slides3:hover .slideshowText,
+.Slides4:hover .slideshowText,
+.Slides5:hover .slideshowText {
   opacity: 1;
 }
 

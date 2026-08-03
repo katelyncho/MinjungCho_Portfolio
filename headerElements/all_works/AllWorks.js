@@ -1,6 +1,6 @@
 // ------- slideshow -------
-let slideIndex = [0, 0];
-const slideId = ["Slides1", "Slides2"];
+let slideIndex = [0, 0, 0, 0, 0];
+const slideId = ["Slides1", "Slides2", "Slides3", "Slides4", "Slides5"];
 const visibleSlides = 3;
 
 function setupSlideshow(no) {
@@ -75,9 +75,15 @@ function showSlides(n, no) {
 window.addEventListener("resize", () => {
   updateTrack(0);
   updateTrack(1);
+  updateTrack(2);
+  updateTrack(3);
+  updateTrack(4);
 });
 
 setupSlideshow(0);
 setupSlideshow(1);
+setupSlideshow(2);
+setupSlideshow(3);
+setupSlideshow(4);
 
 // ------- slideshow -------
