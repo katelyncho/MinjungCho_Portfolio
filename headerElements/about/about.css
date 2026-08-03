@@ -1,0 +1,17 @@
+#profileContainer {
+  z-index: 2;
+  margin: 100px auto;
+  width: 80%;
+}
+
+#profileImage {
+  width: 30vw;
+  min-width: 300px;
+  max-width: 500px;
+  float: left;
+  margin-right: 20px;
+}
+
+#profileText {
+  text-align: left;
+}
